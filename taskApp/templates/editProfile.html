@@ -1,0 +1,164 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>monTaskii</title>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <div class="navigation">
+            <div class="wrapper">
+                    <header>
+                        <a href="{% url 'homePage' %}"><h1 id="logo">Taskii</h1></a>
+                        <nav>
+                            <ul>
+                                <li><a href="{% url 'addTask' %}">+ Add Task</a></li>
+                                <li><a href="{% url 'logoutPage' %}">Logout</a></li>
+                                <li>
+                                    <a href="{% url 'editUser' %}">@{{user}}</a>
+                                    <div class="img">
+                                        {% if user.profile.prfile_image %}
+                                            <img src="{{user.profile.prfile_image.url}}" alt="">
+                                        {% else %}
+                                            <img src="{% static 'media/profile_images/demo-image.jpg' %}" alt="">
+                                        {% endif %}
+
+                                    </div>
+                                </li>
+                            </ul>
+                        </nav>
+
+                        <div class="menu-icon">
+                            <div class="bar1"></div>
+                            <div class="bar2"></div>
+                            <div class="bar3"></div>
+                        </div>
+
+                        <div class="menu-item">
+                            <div class="close-menu">
+                                <div class="bar-cls1"></div>
+                                <div class="bar-cls2"></div>
+                            </div>
+
+                            <div class="menu-container">
+                                <a href="{% url 'editUser' %}">@{{user}}</a>
+                                <a href="">+add Task</a>
+                                <a href="{% url 'logoutPage' %}">Logout</a>
+                            </div>
+                        </div>
+
+                    </header>
+                </div>
+        </div>
+
+                   
+        <!--------------- Edit Section  -------------->
+
+        <div class="edit">
+            <div class="wrapper">
+                <div class="container">
+                    
+                    <div class="card">
+                        <div class="card-container">
+                                
+                            <div class="imgContaine">
+                                {% if user.profile.prfile_image %}
+                                <img src="{{user.profile.prfile_image.url}}" alt="">
+                                {% endif %}
+                            </div>
+                            <form action="" method="POST" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <label for="">First Name
+                                    <!-- <input type="text" placeholder="Enter Your Name" name="name" id="name"> -->
+                                    {{nameForm.username}}
+                                </label>
+
+                                <label for="">Email
+                                    {{nameForm.email}}
+                                </label>
+
+                                <label for="">Image
+                                    {{imgForm.prfile_image}}
+                                </label>
+                                <button type="submit">Save</button>
+                            </form>
+
+                        </div>
+                    </div>
+
+                    <!--  -->
+
+
+                    <div class="progress">
+                        
+                        <div class="progress-container">
+
+                            <div class="progress-user">
+                                    <div class="progress-percentage">
+                                        <div class="header">
+                                            <h3>My Progress</h3>
+                                            <span id="bar"></span>
+                                        </div>
+                                        
+                                        <span id="per">{{result}}% per 100%</span>
+                                    </div>
+
+                                    <div class="progressBar">
+                                        <div class="progressInside"></div>
+                                    </div>
+                            </div>
+
+                            <div class="endtasks">
+                                <div class="endtasks-container">
+
+                                    <div class="search-task">
+                                        <form action="">
+                                        {{filter.form}}
+                                        <button><img src="{% static 'media/profile_images/Group 2105 (1).png' %}" alt=""></button>
+                                    </form></div>
+
+                                    <div class="task">
+                                        {% for done in doneTasks %}
+                                        <div class="task-item">
+                                            <h4>{{done}}</h4>
+                                            <span>{{done.date_created}}</span>
+                                        </div>
+                                        {% endfor %}
+                                        
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        
+
+
+
+
+
+
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/gsap.min.js"></script>
+        <script src="{% static 'js/editProfile.js' %}"></script>
+
+    </body>
+</html>

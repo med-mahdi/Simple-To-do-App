@@ -1,0 +1,157 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>monTaskii</title>
+        <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+        
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    </head>
+    <body style="overflow-x:hidden">
+        <div class="navigation">
+            <div class="wrapper">
+                    <header>
+                        <a href="{% url 'homePage' %}"><h1 id="logo">Taskii</h1></a>
+                        <nav>
+                            <ul>
+                                <li><a href="{% url 'addTask' %}">+ Add Task</a></li>
+                                <li><a href="{% url 'logoutPage' %}">Logout</a></li>
+                                <li>
+                                    <a href="{% url 'editUser' %}">@{{user}}</a>
+                                    <div class="img">
+                                        {% if user.profile.prfile_image %}
+                                            <img src="{{user.profile.prfile_image.url}}" alt="">
+                                        {% else %}
+                                            <img src="{% static 'media/profile_images/demo-image.jpg' %}" alt="">
+                                        {% endif %}
+
+                                    </div>
+                                </li>
+                            </ul>
+                        </nav>
+
+                        <div class="menu-icon">
+                            <div class="bar1"></div>
+                            <div class="bar2"></div>
+                            <div class="bar3"></div>
+                        </div>
+
+                        <div class="menu-item"> 
+                            <div class="close-menu">
+                                <div class="bar-cls1"></div>
+                                <div class="bar-cls2"></div>
+                            </div>
+
+                            <div class="menu-container">
+                                <a href="{% url 'editUser' %}">@{{user}}</a>
+                                <a href="{% url 'addTask' %}">+add Task</a>
+                                <a href="{% url 'logoutPage' %}">Logout</a>
+                            </div>
+                        </div>
+
+                    </header>
+                </div>
+        </div>
+
+
+                    <!-- ---------------------------  -->
+
+                    <div class="greating-part">
+                        <div class="wrapper">
+                                <div class="card-greating">
+
+                                    <div class="card-container">
+                                        <div class="user-name">
+                                            <h3>Hi {{user}}</h3>
+                                            <img src="{% static 'media/profile_images/image 2.png' %}" alt="">
+                                        </div>
+
+                                        <div class="welcome-back">
+                                            <img src="{% static 'media/profile_images/paint.png' %}" alt="" class="paint">
+                                            <h1>Welcome Back</h1>
+                                            <p>{{quote}}</p>
+                                        </div>
+
+                                        <button class="primary-cta"><a href="{% url 'addTask' %}">+ add Task</a></button>      
+                                    </div>
+
+                                </div>
+                        </div>
+                    </div>
+
+
+                    <!--  --------------------------  -->
+
+
+                    <div class="todo-header">
+                        <div class="wrapper">
+                            <div class="header-todo">
+                                <h3>Todo List</h3>
+                                <div class="bar"></div>
+                            </div>
+
+                            <div class="progressbar-container">
+                                <div class="progress-text">
+                                    <span class="discpline">My Tasks Discpline Progress...</span>
+                                    <span id="per">{{result}}% per 100%</span>
+                                </div>
+                                <div class="progressBar">
+                                    <div class="progress"></div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+
+                    
+                    
+
+                    <!-- --------------------------------------- -->
+
+                    <div class="todo-tasks">
+                        <div class="wrapper">
+                            
+                            {% for task in tasks %}
+                            <div class="task">
+                                <div class="task-container">
+                                    <h1>{{task.name}}</h1>
+                                    <div class="buttons">
+                                        <a href="{% url 'complete_task' task.id %}">
+                                        <svg id="complete-btn" width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M13 26C20.1797 26 26 20.1797 26 13C26 5.8203 20.1797 0 13 0C5.8203 0 0 5.8203 0 13C0 20.1797 5.8203 26 13 26ZM12.7766 18.2968L20.8219 9.1675L19.3214 7.84517L11.962 16.1961L7.21551 11.6924L5.8389 13.1432L11.338 18.361L12.0906 19.0751L12.7766 18.2968Z" fill="#03B877"/>
+                                        </svg></a>
+                                        
+                                        <a href="{% url 'deleteTask' task.id %}">
+                                        <svg id="delete-btn" width="27" height="26" viewBox="0 0 27 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M13.519 26C20.6987 26 26.519 20.1797 26.519 13C26.519 5.8203 20.6987 0 13.519 0C6.33934 0 0.519043 5.8203 0.519043 13C0.519043 20.1797 6.33934 26 13.519 26ZM18.1999 6.01167L13.5195 10.5295L8.83904 6.01167L6.75553 8.17015L11.3596 12.6143L6.56861 17.2389L8.65212 19.3974L13.5195 14.6991L18.3868 19.3974L20.4703 17.2389L15.6793 12.6143L20.2834 8.17015L18.1999 6.01167Z" fill="#F21A1A" fill-opacity="0.67"/>
+                                        </svg></a>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+
+                            
+
+                            
+
+
+                        </div>
+                    </div>
+
+
+                    <!-- ---------------------------------------- -->
+
+                    
+
+
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/gsap.min.js"></script>
+        <script src="{% static 'js/script.js' %}"></script>
+    </body>
+</html>

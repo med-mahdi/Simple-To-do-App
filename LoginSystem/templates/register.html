@@ -1,0 +1,74 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static 'css/register.css' %}">
+        <title>Register</title>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <div class="navigation">
+            <div class="wrapper">
+                    <header>
+                        <a href="{% url 'heroPage' %}"><h1 id="logo">Taskii</h1></a>
+                        <nav>
+                            <ul>
+                                <li><a href="{% url 'heroPage' %}">Home</a></li>
+                                <li><a href="{% url 'registerPage' %}">Register</a></li>
+                                <li><a href="{% url 'loginPage' %}">Login</a></li>
+                            </ul>
+                        </nav>
+
+                    </header>
+                </div>
+        </div>
+
+        <div class="login">
+            <div class="login-card">
+
+
+                <div class="heading">
+                    <h2>Register</h2>
+                    <p>Enter your email and password to sign in</p> 
+                </div>
+                
+
+
+                <form action="" name="myForm" method="POST">
+                    {% csrf_token %}
+                    <label for="name">Full Name
+                        <div class="input-container">
+                            {{form.username}}
+                        </div>
+                    </label>   
+
+                    <label for="useremail">Password  
+                        <div class="input-container">
+                            {{form.password1}}
+                        </div>
+                    </label>    
+
+
+                    <label for="userpassword">Password Confirmation
+                        <div class="input-container">
+                            {{form.password2}}
+                            <img class="icon"  src="/images/locked.png" alt="">
+                        </div>    
+                    </label>
+                    <input type="submit" value="Start Now">
+                </form>
+            </div>
+        </div>
+
+
+        <script src="{% static 'js/register.js' %}"></script>
+
+
+    </body>
+</html>
