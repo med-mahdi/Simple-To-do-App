@@ -222,7 +222,7 @@ nav{
     }
 
     .navigation .wrapper{
-        /* border: 1px solid white; */
+        /* border: 1px solid red; */
         width: 600px;
     }
 
@@ -236,7 +236,7 @@ nav{
 
 @media screen and (min-width:980px) {
     .wrapper{
-        /* border: 1px solid red; */
+        border: 1px solid red;
         width: 900px;
     }
 
@@ -249,7 +249,7 @@ nav{
     }
 
     .navigation .wrapper{
-        /* border: 1px solid white; */
+        border: 1px solid;
         width: 900px;
     }
 
@@ -258,6 +258,11 @@ nav{
         /* border: 1px solid white; */
         width: 380px;
     }
+
+    .header h1{
+        /* border: 1px solid red; */
+        font-size: 52px !important;
+    } 
 }
 
 
@@ -505,16 +510,14 @@ body{
         width: 450px;
         margin: 0 auto;
         /* border: 1px solid red; */
-        font-size: 58px;
+        font-size: 8px;
         line-height:115%;
     } 
-
-    
 
 
     .left-sec p{
         /* border: 1px solid red; */
-        font-size: 18.5px;
+        font-size: 15px;
         color: rgba(0, 24, 46, 0.966);
         width: 70%;
     }
@@ -547,7 +550,7 @@ body{
 
     .hero .wrapper{
         /* border: 1px solid red; */
-        width: 900px;
+        width: 950px;
         flex-direction:row;
         justify-content:space-between;
         align-items: center;
@@ -565,7 +568,7 @@ body{
         color: #00305B;
         width: 450px;
         margin: 0 auto;
-        font-size: 58px;
+        font-size: 48px;
         line-height:110%;
         text-align: left;
     } 
@@ -573,7 +576,7 @@ body{
 
     .left-sec p{
         /* border: 1px solid red; */
-        font-size: 18.5px;
+        font-size: 16px;
         color: rgba(0, 24, 46, 0.966);
         width: 90%;
         text-align: left;
@@ -621,14 +624,14 @@ body{
         color: #00305B;
         width: 500px;
         margin: 0 auto;
-        font-size: 65px;
+        font-size: 50px;
         line-height:110%;
         text-align: left;
     } 
 
 
     .left-sec p{
-        font-size: 19px;
+        font-size: 17px;
         color: rgba(0, 24, 46, 0.966);
         width: 98%;
         text-align: left;
